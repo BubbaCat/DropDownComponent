@@ -1,0 +1,162 @@
+@font-face {
+	font-family: "TT Norms";
+	src: url("../../fonts/TTNorms-Regular.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font-family: "TT Norms";
+	vertical-align: baseline;
+	box-sizing: border-box;
+}
+
+*,
+::after,
+::before {
+	box-sizing: border-box;
+}
+
+.dropdown-wrapper {
+	min-width: 400px;
+	display: inline-block;
+	position: relative;
+}
+
+.dropdown-name {
+	display: inline-block;
+	font-weight: 600;
+	font-size: 1em;
+	margin-bottom: 4px;
+}
+
+.selectedOptionsPlaceholder {
+	font-family: "TT Norms";
+	font-size: 16px;
+	color: #c1c1c1;
+}
+
+.selectedOptions {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 10px;
+	row-gap: 8px;
+	column-gap: 4px;
+}
+
+.selectedOptions:hover,
+.dropdown-icon:hover {
+	cursor: pointer;
+}
+.dropdown-icon-open {
+	transform: rotate(180deg);
+}
+.dropdown-icon{
+	margin-left: auto;
+	margin-right: 10px;
+}
+.selectedOptions-container {
+	display: flex;
+	width: 400px;
+	min-height: 40px;
+	border: 1px solid #c1c1c1;
+	border-radius: 10px;
+}
+.selectedOptions-container:hover{
+	cursor: pointer;
+}
+.selectedOption {
+	padding: 4px 15px 0px 12px;
+	display: flex;
+	justify-content: space-between;
+	height: 26px;
+	background: #f4f4f4;
+	border-radius: 10px;
+}
+
+.selectedOption:hover {
+	background-color: rgb(220, 221, 238);
+	transition: 500ms;
+}
+
+.unselectOption {
+	margin-top: 6px;
+}
+
+.flex {
+	display: flex;
+}
+
+.dropdown-list {
+	position: absolute;
+	width: 100%;
+	max-height: 368px;
+	border-radius: 10px;
+	margin-top: 10px;
+	background: #ffffff;
+	box-shadow: 0px 4px 32px rgba(51, 51, 51, 0.15);
+	display: none;
+}
+.dropdown-list-open {
+	display: block;
+}
+.dropdown-search {
+	position: relative;
+	padding-left: 36px;
+	width: 368px;
+	height: 40px;
+	margin: 16px 16px 0px 16px;
+	background: #f4f4f4;
+	border-radius: 10px;
+}
+
+
+.selectedOptions-container:focus,
+.selectedOption:focus,
+.dropdown-search:focus {
+	border: 1px solid grey;
+	outline: none;
+}
+
+/*Option in dropdown list*/
+.option {
+	width: 100%;
+	height: 52px;
+	display: flex;
+	padding: 16px 14px 14px 18px;
+	border-bottom: 1px solid #f4f4f4;
+}
+.option:hover{
+	cursor: pointer;
+}
+
+.option-name {
+	font-size: 16px;
+	margin-left: 10px;
+	vertical-align: 0px;
+}
+
+.option-icon {
+	display: none;
+	width: 20px;
+	height: 20px;
+}
+.option-icon-show{
+display: block;
+}
+.option-checkbox {
+	margin-left: auto;
+	width: 22px;
+	height: 22px;
+	border: 2px solid #621a1a;
+}
+
+.unselectOption {
+	width: 8px;
+	height: 8px;
+	margin-left: 11px;
+}
