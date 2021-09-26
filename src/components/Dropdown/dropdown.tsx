@@ -1,11 +1,11 @@
 import React from "react";
-import { IDropdownProps } from "./interface";
+import { IDropdownProps,IDropdownState } from "./interface";
 import "./styles.css";
 import openSVG from "../../img/open.svg";
 import SearchInput from "../searchInput/searchInput";
 import SelectedOption from "../selectedOption/selectedOption";
 
-export class Dropdown extends React.Component<IDropdownProps, any> {
+export class Dropdown extends React.Component<IDropdownProps, IDropdownState> {
 	toggleRef = React.createRef<HTMLDivElement>();
 	listRef = React.createRef<HTMLDivElement>();
 
@@ -28,20 +28,13 @@ export class Dropdown extends React.Component<IDropdownProps, any> {
 		this.handleSearchChange = this.handleSearchChange.bind(this);
 		this.matchValues = this.matchValues.bind(this);
 		this.handleClickOutside = this.handleClickOutside.bind(this);
-		this.toggleClickEventListener = this.toggleClickEventListener.bind(this);
 	}
 
 	componentDidUpdate() {
-		this.toggleClickEventListener();
+		document.addEventListener("click", this.handleClickOutside);
 	}
 	componentWillUnmount() {
-		this.toggleClickEventListener();
-	}
-
-	toggleClickEventListener() {
-		if (this.state.toggleOptionsList)
-			document.addEventListener("click", this.handleClickOutside);
-		else document.removeEventListener("click", this.handleClickOutside);
+		document.removeEventListener("click", this.handleClickOutside);
 	}
 
 	handleClickOutside(event: any) {
@@ -147,14 +140,16 @@ export class Dropdown extends React.Component<IDropdownProps, any> {
 						}
 						<span
 							className={`option-name`}>{option.value}</span>
-						<span className={`checkbox-container`}>
+						<span 
+						className={`checkbox-container`}>
 							<input
 								type="checkbox"
 								checked={this.isCheckedOption(option) ? true : false}
 								className={`option-checkbox`}
 								onChange={() => this.setOption(option)}
 							/>
-							<span className={`customCheckBox`}></span>
+							<span
+							 className={`customCheckBox`}></span>
 						</span>
 					</li>
 					)	})}

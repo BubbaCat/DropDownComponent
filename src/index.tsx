@@ -8,8 +8,9 @@ import engSVG from "./img/eng.svg";
 import polandSVG from "./img/poland.svg";
 import spainSVG from "./img/spain.svg";
 import italySVG from "./img/italy.svg";
+import { IOption } from './components/dropdown/interface';
 
-const options = [
+const options:Array<IOption> = [
   {value: "Русский",icon:russiaSVG,checked:false},
   {value: "Английский",icon:engSVG,checked:false},
   {value: "Испанский",icon:spainSVG,checked:false},
