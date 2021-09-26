@@ -2,9 +2,8 @@ import React from "react";
 import { IDropdownProps } from "./interface";
 import "./styles.css";
 import openSVG from "../../img/open.svg";
-import closeSVG from "../../img/close.svg";
 import SearchInput from "../searchInput/searchInput";
-//TODO: НАПИСАТЬ ТЕСТЫ
+import SelectedOption from "../selectedOption/selectedOption";
 
 export class Dropdown extends React.Component<IDropdownProps, any> {
 	toggleRef = React.createRef<HTMLDivElement>();
@@ -79,36 +78,33 @@ export class Dropdown extends React.Component<IDropdownProps, any> {
 		});
 	}
 
-	onDeleteOption(e: any, option: any) {
-		const { options } = this.state;
-		e.preventDefault();
-		e.stopPropagation();
+	onDeleteOption(option: any) {
 		this.setState({
 			selectedOptions: this.state.selectedOptions.filter(
 				(item: any) => item !== option
 			),
-			options
 		});
-		console.log(this.state.options)
 	}
 
 	isCheckedOption(option: any) {
-		return this.state.selectedOptions.find((item: any) => item === option);
+		return this.state.selectedOptions.find((item: any) => item.value === option.value);
 	}
 
 	setOption(option: any) {
 		const { selectedOptions } = this.state;
 		let newSelected;
 		if (this.props.multiselect) {
-			if (this.isCheckedOption(option))
+			if (this.isCheckedOption(option)){
 				newSelected = selectedOptions.filter((item: any) => item !== option);
+			}
 			else
 				newSelected = [...selectedOptions, option];
 
 			this.setState({
-				selectedOptions: newSelected
+				selectedOptions: newSelected,
 			})
 		}
+
 		else {
 			this.setState({ selectedOptions: selectedOptions[0] === option ? [] : [option] });
 		}
@@ -118,21 +114,12 @@ export class Dropdown extends React.Component<IDropdownProps, any> {
 		return (
 			<ul className={`selectedOptions`} tabIndex={1}>
 				{this.state.selectedOptions.length > 0 ? (
-					this.state.selectedOptions.map((option: any, i: number) =>
-						<li
-							key={i}
-							className="selectedOption"
-							tabIndex={2}
-							onClick={(e: any) => e.stopPropagation()}>
-							<span
-								className="selectedOption-name">{option.value}</span>
-							<img
-								className="unselectOption"
-								alt="close"
-								src={closeSVG}
-								onClick={(e) => this.onDeleteOption(e, option)}
-							></img>
-						</li>
+					this.state.selectedOptions.map((option: any) =>
+						<SelectedOption
+						key={this.props.options.indexOf(this.props.options.find((item:any)=>item.value===option.value))}
+						option={option}
+						deleteOptionHandler={this.onDeleteOption}
+						/>
 					)) : (
 					<span className="selectedOptionsPlaceholder">
 						{this.props.dropdownPlaceholder}
@@ -146,8 +133,9 @@ export class Dropdown extends React.Component<IDropdownProps, any> {
 		const { showIcon } = this.props;
 		return (
 			<ul>
-				{this.state.options.map((option: any, i: number) => (
-					<li key={i}
+				{this.state.options.map((option: any, i: number) =>{
+					return (<li
+						key={this.props.options.indexOf(this.props.options.find((item:any)=>item.value===option.value))}
 						className={`option`}
 						onClick={() => this.setOption(option)}
 					>
@@ -162,14 +150,14 @@ export class Dropdown extends React.Component<IDropdownProps, any> {
 						<span className={`checkbox-container`}>
 							<input
 								type="checkbox"
-								checked={this.isCheckedOption(option)}
+								checked={this.isCheckedOption(option) ? true : false}
 								className={`option-checkbox`}
 								onChange={() => this.setOption(option)}
 							/>
 							<span className={`customCheckBox`}></span>
 						</span>
 					</li>
-				))}
+					)	})}
 			</ul>);
 	}
 

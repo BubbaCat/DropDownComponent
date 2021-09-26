@@ -1,0 +1,31 @@
+
+.selectedOptions-container:focus {
+	border: 1px solid grey;
+	outline: none;
+}
+
+.selectedOption {
+	padding: 4px 15px 0px 12px;
+	display: flex;
+	justify-content: space-between;
+	height: 26px;
+	background: #f4f4f4;
+	border-radius: 10px;
+}
+
+.selectedOption:hover {
+	background-color: rgb(220, 221, 238);
+	transition: 500ms;
+}
+
+.selectedOption:focus {
+	border: 1px solid grey;
+	outline: none;
+}
+
+.unselectOption {
+	margin-top: 6px;
+	margin-left: 11px;
+	width: 8px;
+	height: 8px;
+}

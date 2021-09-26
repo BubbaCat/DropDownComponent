@@ -10,12 +10,12 @@ import spainSVG from "./img/spain.svg";
 import italySVG from "./img/italy.svg";
 
 const options = [
-  {value: "Русский",icon:russiaSVG},
-  {value: "Английский",icon:engSVG},
-  {value: "Испанский",icon:spainSVG},
-  {value: "Итальянский",icon:italySVG},
-  {value: "Польский",icon: polandSVG },
-  {value: "Немецкий",icon:germanySVG},
+  {value: "Русский",icon:russiaSVG,checked:false},
+  {value: "Английский",icon:engSVG,checked:false},
+  {value: "Испанский",icon:spainSVG,checked:false},
+  {value: "Итальянский",icon:italySVG,checked:false},
+  {value: "Польский",icon: polandSVG,checked:false},
+  {value: "Немецкий",icon:germanySVG,checked:false},
 ];
 
 
